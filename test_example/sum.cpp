@@ -3,15 +3,32 @@
 #include <string>
 #include <vector>
 #include <bitset>
+#include <assert.h>
 
 using namespace std;
 extern void testExtern();
 
 /* A test file for c++*/
 
-class testClass{
-
+class Person{
+	public:
+		Person();
+		string getName() const{
+			return name;
+		}
+		string getAddress() const{
+			return address;
+		}
+	private:
+		string name;
+		string address;
 };
+
+void reset(int *p);
+
+const int *maxOne(const int *val1, const int *val2);
+
+int factorial(int val);
 
 int main(){
 /*	string hello = "hello";
@@ -140,6 +157,105 @@ int main(){
 
 	delete [] arrPtr;
 
+	int i; double d;
+	i = d = 1.5;
+	cout << i << " " << d << endl;
+	
+	d = i = 2.5;
+	cout << i << " " << d << endl;
+
+	int flag = 0;
+	if (flag){
+		cout << "true" << endl;
+	}else if (!flag){
+		cout << "false" << endl;
+	}
+	
+	vector<int> vecInt;
+	vector<int>::size_type size = 11;
+	while (size > 0)
+		vecInt.push_back(--size);
+
+	vector<int>::iterator vecIter = vecInt.begin();
+	while (vecIter != vecInt.end())
+		cout << *vecIter++ << endl;
+
+	int i1 = 12;
+	int j = 13;
+	cout << ((i1 < j) ? i1: j )<< endl;
+
+	int *pInt = new int(1);
+	cout << "pInt value:" << *pInt << endl;
+	cout << pInt << endl;
+
+	delete pInt;
+	// pInt = NULL;
+	//*pInt = 2; //free segment faild
+	cout << pInt << endl;
+
+	pInt = new int(2);
+	cout << "pInt value:" << *pInt << endl;
+
+	int testI = 0;
+	const int testJ = 0;
+	const int &testIP = testI;
+	const int *p = &testJ;
+
+	testI = 2;
+
+	cout << testIP << endl;
+
+	/*
+	int switchI = 0;
+	while (cin>>switchI){
+		switch(switchI){
+		case 1:
+			{
+			int swaitchLocal = 1;
+			cout << ">>:1" << endl;
+			}
+//			break;
+		case 2:
+			cout << ">>:2" << endl;
+			break;
+		case 3: case 4: case 5: case 6:
+			cout << ">>:3,4,5,6" << endl;
+			break;
+		default:
+			int switchLocal2 = 2;
+			cout << ">>:default" << endl;
+		}
+	}
+	*/
+
+	int *val = new int(10);
+	int *val1 = new int(11);
+	cout << "Point: " << val << " Value: " << *val << endl;
+	reset(val);
+	cout << "Point: " << val << " Value: " << *val << endl;
+
+	const int *max = maxOne(val, val1);
+	cout << "Max one: " << *max << endl;
+
+	cout << factorial(5) << endl;
+
 	system("pause");
 	return 0;
+}
+
+
+void reset(int *p){
+	*p = 123;
+	p = 0;
+}
+
+
+const int *maxOne(const int *val1, const int *val2){
+	return *val1 > *val2? val1:val2;
+}
+
+int factorial(int val){
+	if (val > 1)
+		return val * factorial(val-1);
+	return 1;
 }
