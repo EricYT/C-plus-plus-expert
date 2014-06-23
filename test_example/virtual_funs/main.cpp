@@ -10,7 +10,7 @@ using namespace std;
 void main(){
 	/* A test file for class */
 	class persion *newPersion = new persion;
-//	newPersion->foo();
+	newPersion->foo();
 
 	class baseClass *baseClassPtr = newPersion;
 	baseClassPtr->foo();
